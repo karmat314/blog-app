@@ -41,5 +41,4 @@ jobs:
           RAILS_ENV=test bin/rails db:schema:load
 
       - name: Run tests
-        run: |
-          bin/rails test
+        run: bundler exec rails test
