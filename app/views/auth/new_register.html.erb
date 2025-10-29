@@ -1,0 +1,17 @@
+<h1>Sign Up</h1>
+
+<% if flash[:alert] %>
+  <p style="color:red"><%= flash[:alert] %></p>
+<% end %>
+
+<form action="/register" method="post">
+  <label>Username:</label>
+  <input type="text" name="username" required><br><br>
+
+  <label>Password:</label>
+  <input type="password" name="password" required><br><br>
+
+  <input type="submit" value="Sign Up">
+</form>
+
+<p>Already have an account? <a href="/login_page">Login here</a></p>
