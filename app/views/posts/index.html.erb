@@ -3,6 +3,8 @@
     Logged in as <strong><%= current_user.username %></strong>
     <%= button_to "Logout", logout_path, method: :delete %>
   </p>
+
+  <p>Your token: <%= session[:jwt] %></p>
 <% end %>
 
 
