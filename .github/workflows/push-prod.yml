@@ -21,13 +21,21 @@ jobs:
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+
+      - name: Cache gems
+        uses: actions/cache@v3
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
       -
         name: Build and push
         uses: docker/build-push-action@v6
         with:
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/arm64
           file: ./Dockerfile.prod
           push: true
           tags: |
             ${{ vars.DOCKERHUB_USERNAME }}/blog-app:${{ github.ref_name }}
             ${{ vars.DOCKERHUB_USERNAME }}/blog-app:latest
+          cache-from: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/blog-app:latest
+          cache-to: type=inline
