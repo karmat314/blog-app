@@ -1,3 +1,9 @@
+name: push-app
+
+on:
+  push:
+    tags:
+      - 'v*'
 jobs:
   docker:
     runs-on: ubuntu-latest
